@@ -1,0 +1,13 @@
+Первая инструкция, которая работает в программе, проверяет security_cookie == 0xcafebabe
+(благо pdb файл у нас есть и мы знаем имена ключевых символов)
+Проверка значения показывает, что в security_cookie лежит 0xdeadbeef, поэтому остаётся исправить это значение руками
+
+bp $exentry
+g
+dd security_bypass!security_cookie
+ed security_bypass!security_cookie 0xcafebabe
+g
+q
+
+
+// flag = deadbeef_cafebabe
